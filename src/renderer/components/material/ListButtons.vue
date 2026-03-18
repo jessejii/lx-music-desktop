@@ -10,7 +10,7 @@
         <use xlink:href="#icon-addTo" />
       </svg>
     </button>
-    <button v-if="downloadBtn && appSetting['download.enable']" type="button" :aria-label="$t('list__download')" @contextmenu.capture.stop @click.stop="handleClick('download')">
+    <button v-if="downloadBtn" type="button" :aria-label="$t('list__download')" @contextmenu.capture.stop @click.stop="handleClick('download')">
       <svg v-once version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" height="100%" viewBox="0 0 475.078 475.077" space="preserve">
         <use xlink:href="#icon-download" />
       </svg>
@@ -44,8 +44,6 @@
 </template>
 
 <script>
-import { appSetting } from '@renderer/store/setting'
-
 export default {
   props: {
     index: {
@@ -86,11 +84,6 @@ export default {
     },
   },
   emits: ['btn-click'],
-  setup() {
-    return {
-      appSetting,
-    }
-  },
   methods: {
     handleClick(action) {
       this.$emit('btn-click', { action, index: this.index })
