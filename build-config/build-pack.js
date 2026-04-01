@@ -4,6 +4,8 @@ const builder = require('electron-builder')
 const beforePack = require('./build-before-pack')
 const afterPack = require('./build-after-pack')
 
+const [repoOwner, repoName] = (process.env.GITHUB_REPOSITORY || 'lyswhut/lx-music-desktop').split('/')
+
 /**
 * @type {import('electron-builder').Configuration}
 * @see https://www.electron.build/configuration/configuration
@@ -47,8 +49,8 @@ const options = {
   publish: [
     {
       provider: 'github',
-      owner: 'lyswhut',
-      repo: 'lx-music-desktop',
+      owner: repoOwner,
+      repo: repoName,
     },
   ],
 }
